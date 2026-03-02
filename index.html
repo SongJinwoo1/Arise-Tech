@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calm Solutions | Portfolio 2026</title>
+    <title>Calm Solutions | معرض الأعمال الرسمي</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;800&display=swap" rel="stylesheet">
 </head>
@@ -11,49 +11,61 @@
 
     <div id="custom-cursor"></div>
 
-    <div class="space-bg" style="background-image: url('74718.jpg');"></div>
+    <div class="main-overlay"></div>
+    <div class="space-bg" id="bg-image" style="background-image: url('74718.jpg');"></div>
 
-    <header class="glass-header">
-        <img src="74755.png" alt="Logo" class="logo">
-        <nav>
-            <ul>
-                <li><a href="#projects">أعمالنا</a></li>
-                <li><a href="#contact" class="btn-gold">اطلب مشروعك</a></li>
-            </ul>
-        </nav>
+    <header class="glass-nav">
+        <div class="logo-wrapper">
+            <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path class="logo-path" d="M10,50 Q40,30 50,50 T90,50" stroke-width="5" fill="none" stroke-linecap="round"/>
+                <circle class="logo-dot" cx="50" cy="50" r="5" />
+            </svg>
+            <div class="brand-info">
+                <span class="brand-name">Calm Solutions</span>
+                <span class="tagline">Software Solutions</span>
+            </div>
+        </div>
     </header>
 
-    <section class="hero">
-        <h1 class="fade-in">نحن نبني <span class="gold-text">المستقبل الرقمي</span></h1>
-        <p>Calm Solutions: حلول هادئة لأعقد التحديات البرمجية في أي تخصص.</p>
-    </section>
+    <main class="hero">
+        <h1 class="main-title">نصمم الحلول التي <span class="highlight">تتحدث عنك</span></h1>
+        <p class="subtitle">نحن وكالة برمجية متخصصة في تحويل الأفكار إلى واقع رقمي مبهر، مهما كان التخصص.</p>
+        <div class="cta-group">
+            <button class="btn-main">استعرض أعمالنا</button>
+            <button class="btn-sec" onclick="openConsoleManual()">لوحة المطور</button>
+        </div>
+    </main>
 
-    <section id="projects" class="portfolio-grid">
-        <div class="card glass">
-            <div class="card-media">
-                <video autoplay muted loop>
-                    <source src="74754.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="card-body">
-                <h3>الأنظمة الطبية ذكية</h3>
-                <p>تطوير Dashboards متقدمة لمراقبة الوظائف الحيوية بدقة متناهية.</p>
+    <section class="portfolio-grid">
+        <div class="project-card glass">
+            <video autoplay muted loop class="card-video">
+                <source src="74754.mp4" type="video/mp4">
+            </video>
+            <div class="card-content">
+                <h3>حلول الأنظمة الطبية</h3>
+                <p>مثال لقدرتنا على بناء أنظمة تتبع صحي فائقة الدقة.</p>
             </div>
         </div>
-
-        <div class="card glass">
-            <div class="card-media" style="background-image: url('74717.jpg');"></div>
-            <div class="card-body">
-                <h3>منصات التجارة الفاخرة</h3>
-                <p>تصميم متاجر إلكترونية بهوية بصرية فريدة وأداء برمي فائق.</p>
+        
+        <div class="project-card glass">
+            <div class="card-img" style="background-image: url('74717.jpg');"></div>
+            <div class="card-content">
+                <h3>التجارة الإلكترونية</h3>
+                <p>بناء متاجر بمقاييس عالمية تضمن تجربة مستخدم سلسة.</p>
             </div>
         </div>
     </section>
 
-    <div id="dev-console" class="hidden-panel glass">
-        <h2>Dev Console v2.6</h2>
-        <p>Status: <span class="online">Active</span></p>
-        <button onclick="closeConsole()">إغلاق</button>
+    <div id="admin-panel" class="admin-ui glass">
+        <div class="admin-header">
+            <h3>Dev Console v2.6</h3>
+            <span class="status-pulse"></span>
+        </div>
+        <div class="admin-body">
+            <p>> System: Online</p>
+            <p>> Server: Global Edge</p>
+            <button class="btn-close" onclick="closeAdmin()">تشفير وإغلاق</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
