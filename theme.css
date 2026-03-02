@@ -1,0 +1,61 @@
+/* Calm Solutions | Theme & Modes Logic
+   This file controls the visual "Mood" of the showroom.
+*/
+
+/* 1. الوضع الساطع (Light Mode - The Royal Office) */
+body {
+    background-color: var(--soft-gray);
+    color: var(--primary-navy);
+    transition: background-color var(--transition-smooth), color var(--transition-smooth);
+}
+
+header h1 {
+    color: var(--primary-navy);
+}
+
+.badge {
+    background-color: var(--primary-navy);
+    color: var(--pure-white);
+}
+
+footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    color: var(--text-gray);
+}
+
+/* 2. الوضع الداكن (Dark Mode - The Spaceship) */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--deep-black);
+        color: var(--matte-gold);
+    }
+
+    header h1 {
+        color: var(--matte-gold);
+    }
+
+    .greeting-text {
+        color: rgba(212, 175, 55, 0.7); /* ذهبي شفاف قليلاً للهدوء */
+    }
+
+    .bento-item {
+        background: rgba(255, 255, 255, 0.03); /* زجاج داكن جداً */
+        border: 1px solid rgba(212, 175, 55, 0.1);
+    }
+
+    .badge {
+        background-color: var(--matte-gold);
+        color: var(--deep-black);
+    }
+
+    footer {
+        border-top: 1px solid rgba(212, 175, 55, 0.1);
+        color: var(--matte-gold);
+        opacity: 0.6;
+    }
+}
+
+/* تحسين الأداء: منع "وميض" الألوان عند التحميل */
+.no-transition {
+    transition: none !important;
+}
