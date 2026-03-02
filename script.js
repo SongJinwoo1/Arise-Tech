@@ -1,35 +1,24 @@
-// 1. تتبع حركة الماوس (Elite Cursor)
+// 1. الماوس المخصص
 const cursor = document.getElementById('custom-cursor');
 document.addEventListener('mousemove', (e) => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
 });
 
-// 2. تتبع كلمة السر لفتح لوحة التحكم
-let input = "";
-const secret = "admin";
-
+// 2. تتبع كلمة السر (admin) لفتح اللوحة
+let typed = "";
 document.addEventListener('keyup', (e) => {
-    input += e.key.toLowerCase();
-    input = input.slice(-5);
-
-    if (input === secret) {
-        document.getElementById('dev-console').style.display = 'block';
-        console.log("%c [Calm Solutions] Access Granted", "color: gold; font-weight: bold;");
+    typed += e.key.toLowerCase();
+    typed = typed.slice(-5);
+    if (typed === "admin") {
+        document.getElementById('admin-panel').style.display = 'block';
     }
 });
 
-function closeConsole() {
-    document.getElementById('dev-console').style.display = 'none';
+function closeAdmin() {
+    document.getElementById('admin-panel').style.display = 'none';
 }
 
-// 3. أنيميشن الظهور عند التمرير
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-        }
-    });
-});
-
-document.querySelectorAll('.card').forEach(card => observer.observe(card));
+function openConsoleManual() {
+    alert("اكتب كلمة 'admin' على لوحة المفاتيح للدخول السري!");
+}
