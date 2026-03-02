@@ -2,71 +2,58 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calm Solutions | معرض الأعمال الرسمي</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Calm Solutions | The Infinity Showroom</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div id="custom-cursor"></div>
+    <div class="liquid-bg" id="liquidBg"></div>
 
-    <div class="main-overlay"></div>
-    <div class="space-bg" id="bg-image" style="background-image: url('74718.jpg');"></div>
-
-    <header class="glass-nav">
+    <header>
         <div class="logo-wrapper">
-            <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path class="logo-path" d="M10,50 Q40,30 50,50 T90,50" stroke-width="5" fill="none" stroke-linecap="round"/>
-                <circle class="logo-dot" cx="50" cy="50" r="5" />
+            <svg id="mainLogo" class="logo-svg" viewBox="0 0 100 100">
+                <path class="logo-path" d="M10,50 Q40,30 50,50 T90,50" />
+                <circle cx="50" cy="50" r="4" class="logo-dot" />
             </svg>
-            <div class="brand-info">
-                <span class="brand-name">Calm Solutions</span>
-                <span class="tagline">Software Solutions</span>
-            </div>
         </div>
+        <h1 class="brand-name">Calm Solutions</h1>
+        <p id="greeting" class="greeting">الهدوء يبدأ من هنا...</p>
     </header>
 
-    <main class="hero">
-        <h1 class="main-title">نصمم الحلول التي <span class="highlight">تتحدث عنك</span></h1>
-        <p class="subtitle">نحن وكالة برمجية متخصصة في تحويل الأفكار إلى واقع رقمي مبهر، مهما كان التخصص.</p>
-        <div class="cta-group">
-            <button class="btn-main">استعرض أعمالنا</button>
-            <button class="btn-sec" onclick="openConsoleManual()">لوحة المطور</button>
+    <main class="bento-container">
+        <div class="bento-item large" data-category="Medical Logic">
+            <div class="glow"></div>
+            <div class="item-content">
+                <span class="item-category">النظمة الطبية</span>
+                <h2 class="item-title">Medical Logic System</h2>
+            </div>
+        </div>
+
+        <div class="bento-item" data-category="E-commerce">
+            <div class="glow"></div>
+            <div class="item-content">
+                <span class="item-category">متاجر فاخرة</span>
+                <h2 class="item-title">Luxury Brand Shop</h2>
+            </div>
+        </div>
+
+        <div class="bento-item tall" data-category="Custom">
+            <div class="glow"></div>
+            <div class="item-content">
+                <span class="item-category">حلول مخصصة</span>
+                <h2 class="item-title">Custom Software</h2>
+            </div>
+        </div>
+
+        <div class="bento-item" data-category="Performance">
+            <div class="glow"></div>
+            <div class="item-content">
+                <span class="item-category">الأداء</span>
+                <h2 class="item-title">120 FPS Engine</h2>
+            </div>
         </div>
     </main>
-
-    <section class="portfolio-grid">
-        <div class="project-card glass">
-            <video autoplay muted loop class="card-video">
-                <source src="74754.mp4" type="video/mp4">
-            </video>
-            <div class="card-content">
-                <h3>حلول الأنظمة الطبية</h3>
-                <p>مثال لقدرتنا على بناء أنظمة تتبع صحي فائقة الدقة.</p>
-            </div>
-        </div>
-        
-        <div class="project-card glass">
-            <div class="card-img" style="background-image: url('74717.jpg');"></div>
-            <div class="card-content">
-                <h3>التجارة الإلكترونية</h3>
-                <p>بناء متاجر بمقاييس عالمية تضمن تجربة مستخدم سلسة.</p>
-            </div>
-        </div>
-    </section>
-
-    <div id="admin-panel" class="admin-ui glass">
-        <div class="admin-header">
-            <h3>Dev Console v2.6</h3>
-            <span class="status-pulse"></span>
-        </div>
-        <div class="admin-body">
-            <p>> System: Online</p>
-            <p>> Server: Global Edge</p>
-            <button class="btn-close" onclick="closeAdmin()">تشفير وإغلاق</button>
-        </div>
-    </div>
 
     <script src="script.js"></script>
 </body>
