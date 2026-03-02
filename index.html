@@ -3,43 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calm Solutions | حلول رقمية هادئة</title>
+    <title>Calm Solutions | حلول رقمية مبتكرة</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-theme">
-
+    <canvas id="particleCanvas"></canvas>
     <header class="hero">
-        <video autoplay muted loop playsinline class="video-bg">
-            <source src="3281563176387052153.mp4" type="video/mp4">
-        </video>
-        
-        <div class="hero-overlay"></div>
-
-        <div class="container hero-content" data-aos="fade-up" data-aos-duration="2000">
-            <h1 class="main-title">نحن نصنع الهدوء في عالم رقمي صاخب</h1>
-            <p class="sub-hero">حلول ذكية، تصميمات انسيابية، ونتائج تتحدث عن نفسها.</p>
-            <div class="cta-group">
-                <a href="#about" class="cta-button primary">اكتشف هدوءنا</a>
-                <a href="#contact" class="cta-button secondary">ابدأ رحلتك الآن</a>
-            </div>
+        <div class="container hero-content">
+            <div id="text-container"></div> 
+            <p class="sub-hero">برمجيات ذكية تتشكل بهدوء لتلبي طموحاتك.</p>
+            <a href="https://wa.me/96597805334" class="cta-button">ابدأ رحلتك معنا</a>
         </div>
     </header>
-
-    <section class="about" id="about">
-        <div class="container" data-aos="fade-up">
-            <div class="section-badge">من نحن</div>
-            <h2>جوهر الهدوء الرقمي</h2>
-            <p>في <span class="brand-name">Calm Solutions</span>، نؤمن أن التميز لا يحتاج إلى ضجيج. وكالة رقمية تقاد بالذكاء الاصطناعي، تهدف لتقديم خدمات متكاملة بأعلى معايير الكفاءة.</p>
-        </div>
-    </section>
-
-    <footer class="footer" style="padding: 40px; text-align: center; color: #8b949e; background: #0a0b10; border-top: 1px solid rgba(255,255,255,0.05);">
-        <p>© 2026 Calm Solutions. جميع الحقوق محفوظة.</p>
-    </footer>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <a href="https://wa.me/96597805334" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>تواصل معنا</span>
+    </a>
     <script src="script.js"></script>
 </body>
 </html>
