@@ -2,80 +2,50 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Calm Solutions | The Infinity Showroom - We Code Anything">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calm Solutions | The Infinity Showroom</title>
-
     <link rel="stylesheet" href="root.css">
     <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="liquid.css">
-    <link rel="stylesheet" href="logo.css">
     <link rel="stylesheet" href="bento.css">
+    <link rel="stylesheet" href="logo.css">
     <link rel="stylesheet" href="effects.css">
 </head>
-<body>
+<body class="no-transition">
+    <div class="liquid-bg"></div>
 
-    <div class="liquid-bg" id="liquidBg"></div>
+    <div class="theme-switcher">
+        <button id="themeToggle" aria-label="Switch Mode">
+            <span class="icon">🌓</span>
+        </button>
+    </div>
 
-    <header id="mainHeader">
-        <div class="logo-container">
-            <svg id="mainLogo" class="logo-svg" viewBox="0 0 100 100" role="button" aria-label="Secret Entrance">
-                <path class="logo-path" d="M10,50 Q40,30 50,50 T90,50" />
-                <circle cx="50" cy="50" r="4" class="logo-dot" />
+    <header>
+        <div class="logo-container" id="mainLogo">
+            <svg class="logo-svg" viewBox="0 0 100 40">
+                <path class="logo-path" d="M10,20 Q25,5 40,20 T70,20 T100,20" />
+                <circle class="logo-dot" cx="85" cy="20" r="3" />
             </svg>
         </div>
-        <h1 class="brand-title">Calm Solutions</h1>
-        <p id="dynamicGreeting" class="greeting-text">جاري التحميل...</p>
+        <h1 class="brand-name">Calm Solutions</h1>
+        <p id="dynamicGreeting" class="greeting">جاري التحميل...</p>
     </header>
 
-    <main class="bento-container" id="portfolioGrid">
-        
-        <section class="bento-item large" data-aos="fade-up">
+    <main class="bento-container">
+        <section class="bento-item large">
             <div class="glow-effect"></div>
             <div class="content-wrapper">
                 <span class="badge">Medical Logic</span>
                 <h2>الأنظمة الطبية الذكية</h2>
-                <p>تحويل التعقيد إلى سهولة برمجية متناهية.</p>
+                <p>تحويل التعقيد الطبي إلى سهولة برمجية متناهية.</p>
             </div>
         </section>
-
-        <section class="bento-item" data-aos="fade-up">
-            <div class="glow-effect"></div>
-            <div class="content-wrapper">
-                <span class="badge">E-commerce</span>
-                <h2>Luxury Brand</h2>
-            </div>
-        </section>
-
-        <section class="bento-item tall" data-aos="fade-up">
-            <div class="glow-effect"></div>
-            <div class="content-wrapper">
-                <span class="badge">Custom Software</span>
-                <h2>حلول برمجية مفصلة</h2>
-            </div>
-        </section>
-
-        <section class="bento-item" data-aos="fade-up">
-            <div class="glow-effect"></div>
-            <div class="content-wrapper">
-                <span class="badge">Engine</span>
-                <h2>120 FPS Experience</h2>
-            </div>
-        </section>
-
-    </main>
+        </main>
 
     <div id="whatsappButton" class="whatsapp-float"></div>
 
-    <footer>
-        <p>© 2026 Calm Solutions | Designed by The King</p>
-    </footer>
-
     <script src="main.js"></script>
     <script src="greeting.js"></script>
-    <script src="interactions.js"></script>
     <script src="security.js"></script>
     <script src="whatsapp.js"></script>
-
 </body>
 </html>
