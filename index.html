@@ -3,27 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calm Solutions | حلول رقمية مبتكرة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>ARISE GLOBAL OS | THE MONARCH</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark-theme">
+<body class="loading">
+    <div id="system-loader">جاري استدعاء الظلال...</div>
 
-    <canvas id="particleCanvas"></canvas>
-
-    <header class="hero">
-        <div class="container hero-content">
-            <div id="text-container"></div> 
-            <p class="sub-hero">برمجيات ذكية تتشكل بهدوء لتلبي طموحاتك.</p>
-            <a href="#about" class="cta-button">اكتشف هدوءنا</a>
+    <section id="gate-screen">
+        <div class="glass-card">
+            <h1 class="glitch" data-text="ARISE">ARISE</h1>
+            <div class="setup-form">
+                <input type="text" id="user-name" placeholder="اللقب الملكي...">
+                <select id="user-path">
+                    <option value="medical">المسار الطبي (Medical)</option>
+                    <option value="tech">المسار التقني (Tech Architect)</option>
+                    <option value="azhari">المسار الأزهري (Scholar)</option>
+                </select>
+                <button onclick="System.init()">تفعيل النظام ⚔️</button>
+            </div>
         </div>
-    </header>
+    </section>
 
-    <a href="https://wa.me/96597805334" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-        <span>تواصل معنا</span>
-    </a>
+    <main id="main-hud" class="hidden">
+        <header class="top-bar">
+            <div class="xp-container">
+                <span id="rank-display">RANK: E</span>
+                <div class="xp-track"><div id="xp-fill"></div></div>
+                <span id="lvl-display">LVL: 1</span>
+            </div>
+            <div id="digital-clock">00:00:00</div>
+        </header>
+
+        <div class="grid-layout">
+            <aside class="panel profile-panel">
+                <div class="avatar" id="monarch-avatar">?</div>
+                <h2 id="monarch-name">NAME</h2>
+                <div class="stats-list">
+                    <div class="stat"><span>INT (ذكاء):</span> <b id="stat-int">10</b></div>
+                    <div class="stat"><span>MANA (طاقة):</span> <b id="stat-mana">100%</b></div>
+                </div>
+                <div class="penalty-timer hidden" id="penalty-alert">⚠️ تحذير: مهمة عقاب نشطة!</div>
+            </aside>
+
+            <section class="panel quest-panel">
+                <div class="tabs">
+                    <button onclick="UI.switchTab('daily')">المهام اليومية</button>
+                    <button onclick="UI.switchTab('hidden')">مهام مخفية</button>
+                </div>
+                <div id="quest-container">
+                    </div>
+            </section>
+
+            <aside class="panel vault-panel">
+                <h3>خزنة المواد (Vault)</h3>
+                <div id="subject-list"></div>
+                <div class="pomodoro-box">
+                    <span>تركيز الملك:</span>
+                    <div id="timer-display">25:00</div>
+                    <button onclick="Timer.toggle()">ابدأ</button>
+                </div>
+            </aside>
+        </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
