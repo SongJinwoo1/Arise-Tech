@@ -2,70 +2,189 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARISE GLOBAL OS | THE MONARCH</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ARISE SYSTEM | UNIVERSAL HUD</title>
+    <style>
+        :root { --p: #a333ff; --bg: #050505; --cyan: #00f2ff; --gray: #121212; --text: #e0e0e0; }
+        
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            background: var(--bg); color: var(--text); 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            margin: 0; padding: 0; min-height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        /* حاوية مرنة تتكيف مع حجم الشاشة */
+        .main-wrapper {
+            width: 100%; max-width: 500px; padding: 15px;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card {
+            background: rgba(15, 15, 15, 0.95);
+            border: 2px solid var(--p);
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: 0 0 40px rgba(163, 51, 255, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        /* تحسينات الواجهة للهواتف */
+        h1 { 
+            font-size: clamp(1.2rem, 5vw, 1.8rem); 
+            color: var(--p); text-align: center; 
+            text-shadow: 0 0 15px var(--p); margin-bottom: 20px;
+        }
+
+        .auth-btn {
+            width: 100%; border: 1px solid var(--cyan);
+            background: transparent; color: var(--cyan);
+            padding: 14px; border-radius: 12px;
+            font-size: 1rem; font-weight: bold;
+            cursor: pointer; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+
+        .auth-btn:active { transform: scale(0.95); background: rgba(0, 242, 255, 0.1); }
+
+        /* HUD التفاعلي */
+        .user-profile {
+            display: flex; align-items: center; gap: 15px;
+            background: var(--gray); padding: 12px;
+            border-radius: 16px; margin-bottom: 20px;
+        }
+
+        .avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--p); object-fit: cover; }
+        
+        .rank-info { flex-grow: 1; }
+        .rank-tag { color: var(--cyan); font-weight: 900; font-size: 0.8rem; letter-spacing: 1px; }
+
+        /* شريط التقدم */
+        .progress-area { margin: 20px 0; }
+        .xp-label { font-size: 0.7rem; margin-bottom: 5px; display: block; color: #888; }
+        .bar-bg { background: #222; height: 10px; border-radius: 5px; overflow: hidden; border: 1px solid #333; }
+        #xp-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--p), var(--cyan)); transition: 1s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
+
+        /* قائمة المهام المرنة */
+        .quest-item {
+            background: #1a1a1a; padding: 15px;
+            border-radius: 14px; margin-bottom: 12px;
+            border-right: 4px solid var(--p);
+        }
+
+        .quest-item label { display: block; font-weight: bold; margin-bottom: 8px; font-size: 0.9rem; }
+        
+        input {
+            width: 100%; padding: 10px; background: #000;
+            border: 1px solid #333; color: white; border-radius: 8px;
+            margin-bottom: 10px; outline: none; transition: 0.3s;
+        }
+
+        input:focus { border-color: var(--p); box-shadow: 0 0 5px var(--p); }
+
+        .btn-action {
+            width: 100%; background: var(--p); color: white;
+            border: none; padding: 12px; border-radius: 10px;
+            font-weight: bold; cursor: pointer;
+        }
+
+        .hidden { display: none; }
+
+        /* استعلامات الوسائط (Media Queries) لضمان التوافق */
+        @media (max-width: 360px) {
+            .card { padding: 15px; }
+            h1 { font-size: 1.1rem; }
+        }
+    </style>
 </head>
-<body class="loading">
-    <div id="system-loader">جاري استدعاء الظلال...</div>
+<body>
 
-    <section id="gate-screen">
-        <div class="glass-card">
-            <h1 class="glitch" data-text="ARISE">ARISE</h1>
-            <div class="setup-form">
-                <input type="text" id="user-name" placeholder="اللقب الملكي...">
-                <select id="user-path">
-                    <option value="medical">المسار الطبي (Medical)</option>
-                    <option value="tech">المسار التقني (Tech Architect)</option>
-                    <option value="azhari">المسار الأزهري (Scholar)</option>
-                </select>
-                <button onclick="System.init()">تفعيل النظام ⚔️</button>
+<div class="main-wrapper">
+    <div id="auth-screen" class="card">
+        <h1>ARISE TECH SYSTEM</h1>
+        <button class="auth-btn" id="loginBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M21.35 11.1h-9.17v2.73h6.51c-.33 1.56-1.56 2.73-3.21 2.73c-2.02 0-3.65-1.63-3.65-3.65s1.63-3.65 3.65-3.65c.88 0 1.68.32 2.3.84l2.13-2.13C18.67 5.43 16.73 4.53 14.48 4.53c-4.14 0-7.5 3.36-7.5 7.5s3.36 7.5 7.5 7.5c4.14 0 7.5-3.36 7.5-7.5c0-.45-.03-.9-.08-1.33z"/></svg>
+            اتصال عبر جوجل
+        </button>
+    </div>
+
+    <div id="hud-screen" class="card hidden">
+        <div class="user-profile">
+            <img id="u-img" class="avatar" src="" alt="">
+            <div class="rank-info">
+                <div id="u-name" style="font-size: 0.9rem; font-weight: bold;">جاري المزامنة...</div>
+                <div class="rank-tag">MONARCH RANK: <span id="u-rank">E</span></div>
             </div>
         </div>
-    </section>
 
-    <main id="main-hud" class="hidden">
-        <header class="top-bar">
-            <div class="xp-container">
-                <span id="rank-display">RANK: E</span>
-                <div class="xp-track"><div id="xp-fill"></div></div>
-                <span id="lvl-display">LVL: 1</span>
-            </div>
-            <div id="digital-clock">00:00:00</div>
-        </header>
-
-        <div class="grid-layout">
-            <aside class="panel profile-panel">
-                <div class="avatar" id="monarch-avatar">?</div>
-                <h2 id="monarch-name">NAME</h2>
-                <div class="stats-list">
-                    <div class="stat"><span>INT (ذكاء):</span> <b id="stat-int">10</b></div>
-                    <div class="stat"><span>MANA (طاقة):</span> <b id="stat-mana">100%</b></div>
-                </div>
-                <div class="penalty-timer hidden" id="penalty-alert">⚠️ تحذير: مهمة عقاب نشطة!</div>
-            </aside>
-
-            <section class="panel quest-panel">
-                <div class="tabs">
-                    <button onclick="UI.switchTab('daily')">المهام اليومية</button>
-                    <button onclick="UI.switchTab('hidden')">مهام مخفية</button>
-                </div>
-                <div id="quest-container">
-                    </div>
-            </section>
-
-            <aside class="panel vault-panel">
-                <h3>خزنة المواد (Vault)</h3>
-                <div id="subject-list"></div>
-                <div class="pomodoro-box">
-                    <span>تركيز الملك:</span>
-                    <div id="timer-display">25:00</div>
-                    <button onclick="Timer.toggle()">ابدأ</button>
-                </div>
-            </aside>
+        <div class="progress-area">
+            <span class="xp-label">نظام الخبرة المكتسبة (XP)</span>
+            <div class="bar-bg"><div id="xp-fill"></div></div>
         </div>
-    </main>
 
-    <script src="script.js"></script>
+        <div id="quests-container">
+            <div class="quest-item">
+                <label>📖 ورد القرآن الكريم</label>
+                <input type="text" id="ev-q" placeholder="أدخل السورة والآيات لإثبات الورد">
+                <button class="btn-action" onclick="complete('q')">تأكيد الإنجاز</button>
+            </div>
+            <div class="quest-item">
+                <label>🇬🇧 اللغة الإنجليزية</label>
+                <input type="text" id="ev-e" placeholder="اكتب 5 كلمات جديدة تعلمتها اليوم">
+                <button class="btn-action" onclick="complete('e')">تأكيد الإنجاز</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAz8CIPuN8u_8dTWpF1A6Ab65pz045GSf8",
+        authDomain: "arise-tech-system.firebaseapp.com",
+        projectId: "arise-tech-system",
+        appId: "1:668442578821:web:c130beaef95961b4ef7eec"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    document.getElementById('loginBtn').onclick = () => signInWithPopup(auth, new GoogleAuthProvider());
+
+    onAuthStateChanged(auth, async (u) => {
+        if (u) {
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('hud-screen').classList.remove('hidden');
+            const r = doc(db, "monarchs", u.uid);
+            let s = await getDoc(r);
+            if (!s.exists()) await setDoc(r, { name: u.displayName, rank: "E", xp: 0 });
+            const d = (await getDoc(r)).data();
+            document.getElementById('u-name').innerText = d.name;
+            document.getElementById('u-rank').innerText = d.rank;
+            document.getElementById('u-img').src = u.photoURL;
+            document.getElementById('xp-fill').style.width = d.xp + "%";
+        }
+    });
+
+    window.complete = async (t) => {
+        const ev = document.getElementById(`ev-${t}`).value;
+        if(ev.length < 5) return alert("🛡️ بروتوكول الإثبات يرفض الإدخال القصير!");
+        const r = doc(db, "monarchs", auth.currentUser.uid);
+        const s = await getDoc(r);
+        const nxp = Math.min((s.data().xp || 0) + 15, 100);
+        await updateDoc(r, { xp: nxp });
+        document.getElementById('xp-fill').style.width = nxp + "%";
+        document.getElementById(`ev-${t}`).disabled = true;
+        alert("⚔️ تم الإنجاز ومزامنة البيانات سحابياً.");
+    };
+</script>
 </body>
 </html>
