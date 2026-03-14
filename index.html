@@ -19,39 +19,98 @@
 <body class="antialiased">
 
     <nav class="fixed w-full z-[100] glass border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center" id="main-nav">
-        <div class="font-orbitron text-xl md:text-2xl font-bold tracking-tighter text-white">ARISE <span class="text-neonBlue">TECH</span></div>
-        <div class="hidden md:flex gap-8 font-medium text-[10px] uppercase tracking-[0.3em] text-gray-400 items-center">
-            <a href="#home">Home</a>
-            <a href="#portfolio">Portfolio</a>
-            <button id="install-btn-nav" class="install-btn-hidden items-center gap-2 bg-neonBlue/10 border border-neonBlue/40 text-neonBlue px-4 py-2 rounded-full">GET APP</button>
-            <a href="#contact" class="text-white border-b border-neonBlue pb-1">Contact</a>
+        <div class="font-orbitron text-xl md:text-2xl font-bold tracking-tighter text-white uppercase">ARISE <span class="text-neonBlue">TECH</span></div>
+        <div class="hidden md:flex gap-8 items-center text-[10px] tracking-[0.3em] text-gray-400">
+            <a href="#home" class="hover:text-neonBlue transition">HOME</a>
+            <a href="#services" class="hover:text-neonBlue transition">SERVICES</a>
+            <a href="#portfolio" class="hover:text-neonBlue transition">PORTFOLIO</a>
+            <button id="install-btn-nav" class="install-btn-hidden items-center gap-2 bg-neonBlue/10 border border-neonBlue/40 text-neonBlue px-4 py-2 rounded-full transition hover:bg-neonBlue hover:text-black">GET APP</button>
+            <a href="#contact" class="text-white border-b border-neonBlue pb-1">CONTACT</a>
         </div>
         <button id="menu-btn" class="md:hidden text-white p-2"><i data-lucide="menu" id="menu-icon"></i></button>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 z-[90] bg-black flex flex-col items-center justify-center gap-8 md:hidden">
+    <div id="mobile-menu" class="fixed inset-0 z-[90] bg-black flex flex-col items-center justify-center gap-8 md:hidden text-center">
         <a href="#home" class="menu-link font-orbitron text-2xl">HOME</a>
-        <button id="install-btn-mobile" class="install-btn-hidden items-center gap-3 bg-neonBlue text-black px-8 py-3 rounded-full font-bold">Download App</button>
+        <a href="#services" class="menu-link font-orbitron text-2xl">SERVICES</a>
+        <a href="#portfolio" class="menu-link font-orbitron text-2xl">PORTFOLIO</a>
+        <button id="install-btn-mobile" class="install-btn-hidden items-center gap-3 bg-neonBlue text-black px-8 py-3 rounded-full font-bold uppercase">Download App</button>
         <a href="#contact" class="menu-link font-orbitron text-2xl text-neonBlue">CONTACT</a>
     </div>
 
     <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center px-6">
         <div class="hero-mesh"></div>
+        <div data-aos="zoom-in" data-aos-duration="1200">
+             <i data-lucide="layers" class="w-16 h-16 text-neonBlue mb-8"></i>
+        </div>
         <h1 class="font-orbitron text-5xl md:text-9xl font-bold mb-6 tracking-tighter" data-aos="fade-up">ARISE <span class="text-gradient">TECH</span></h1>
-        <p class="text-gray-400 uppercase tracking-widest mb-12" data-aos="fade-up" data-aos-delay="200">Level Up Your Reality</p>
-        <a href="#portfolio" class="glow-button bg-gradient-to-r from-neonBlue to-electricPurple text-white px-12 py-5 rounded-2xl font-bold uppercase shadow-xl">Explore Projects</a>
+        <p class="text-gray-400 uppercase tracking-[0.4em] mb-12 text-sm md:text-xl" data-aos="fade-up" data-aos-delay="200">Level Up Your Reality</p>
+        <div data-aos="fade-up" data-aos-delay="400">
+            <a href="#portfolio" class="glow-button bg-gradient-to-r from-neonBlue to-electricPurple text-white px-12 py-5 rounded-2xl font-bold uppercase shadow-xl tracking-widest">Explore Projects</a>
+        </div>
     </section>
 
-    <section id="portfolio" class="py-32 bg-[#020202]">
+    <section id="services" class="py-32 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="text-center mb-20" data-aos="fade-up">
+            <h2 class="font-orbitron text-3xl md:text-6xl font-bold mb-4 italic tracking-tighter uppercase">Core Solutions</h2>
+            <div class="w-20 h-1 bg-neonBlue mx-auto rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="glass p-12 rounded-[2.5rem] group hover:border-neonBlue transition duration-500" data-aos="fade-up">
+                <div class="w-16 h-16 bg-neonBlue/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition">
+                    <i data-lucide="monitor" class="text-neonBlue"></i>
+                </div>
+                <h3 class="font-orbitron text-xl font-bold mb-4 uppercase">Web Systems</h3>
+                <p class="text-gray-500 text-sm leading-relaxed font-light">بناء أنظمة ويب متطورة فائقة السرعة، مصممة لتحويل الزوار إلى عملاء دائمين.</p>
+            </div>
+            <div class="glass p-12 rounded-[2.5rem] group hover:border-electricPurple transition duration-500" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-16 h-16 bg-electricPurple/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition">
+                    <i data-lucide="bot" class="text-electricPurple"></i>
+                </div>
+                <h3 class="font-orbitron text-xl font-bold mb-4 uppercase">AI Automation</h3>
+                <p class="text-gray-500 text-sm leading-relaxed font-light">دمج الذكاء الاصطناعي في أعمالك من خلال أنظمة الدردشة والأتمتة الذكية.</p>
+            </div>
+            <div class="glass p-12 rounded-[2.5rem] group hover:border-neonBlue transition duration-500" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-16 h-16 bg-neonBlue/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition">
+                    <i data-lucide="smartphone" class="text-neonBlue"></i>
+                </div>
+                <h3 class="font-orbitron text-xl font-bold mb-4 uppercase">PWA Apps</h3>
+                <p class="text-gray-500 text-sm leading-relaxed font-light">تحويل موقعك إلى تطبيق موبايل يعمل بدون إنترنت وبأداء يضاهي التطبيقات الأصلية.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 border-y border-white/5 bg-[#020202]">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            <div data-aos="zoom-in">
+                <i data-lucide="globe" class="mx-auto mb-4 text-neonBlue"></i>
+                <h5 class="font-bold text-lg mb-2">Global Servers</h5>
+                <p class="text-gray-500 text-sm italic">Edge Computing Enabled</p>
+            </div>
+            <div data-aos="zoom-in" data-aos-delay="100">
+                <i data-lucide="zap" class="mx-auto mb-4 text-electricPurple"></i>
+                <h5 class="font-bold text-lg mb-2">99.9% Uptime</h5>
+                <p class="text-gray-500 text-sm italic">High-Performance Infrastructure</p>
+            </div>
+            <div data-aos="zoom-in" data-aos-delay="200">
+                <i data-lucide="shield-check" class="mx-auto mb-4 text-neonBlue"></i>
+                <h5 class="font-bold text-lg mb-2">Secure Code</h5>
+                <p class="text-gray-500 text-sm italic">Cyber-Shield Architecture</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-32 bg-[#000000]">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="font-orbitron text-3xl md:text-5xl font-bold mb-16 italic">_Portfolio</h2>
+            <h2 class="font-orbitron text-3xl md:text-5xl font-bold mb-16 italic tracking-tighter">_Portfolio</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div class="group relative overflow-hidden rounded-[2.5rem] glass" data-aos="fade-up">
-                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800" class="w-full h-[450px] object-cover opacity-40 group-hover:opacity-100 transition duration-700">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800" class="w-full h-[450px] object-cover opacity-40 group-hover:scale-105 group-hover:opacity-100 transition duration-700">
                     <div class="absolute bottom-8 left-8 right-8">
-                        <span class="text-[10px] text-neonBlue font-bold uppercase tracking-widest">Luxury Brand</span>
-                        <h4 class="text-3xl font-bold mb-4 font-orbitron">Arij Perfumes</h4>
-                        <a href="arij.html" class="bg-white text-black px-6 py-3 rounded-xl font-bold text-sm inline-block">View Live</a>
+                        <span class="text-[10px] text-neonBlue font-bold uppercase tracking-[0.4em] mb-3 inline-block">Luxury E-Commerce</span>
+                        <h4 class="text-3xl font-bold mb-6 font-orbitron tracking-tighter italic">Arij Perfumes</h4>
+                        <a href="arij.html" class="bg-white text-black px-8 py-3 rounded-xl font-bold text-sm inline-block hover:bg-neonBlue transition duration-300">View Demo</a>
                     </div>
                 </div>
             </div>
@@ -59,15 +118,20 @@
     </section>
 
     <section id="contact" class="py-32 px-6 max-w-4xl mx-auto">
-        <div class="glass p-10 md:p-16 rounded-[3.5rem]" data-aos="fade-up">
-            <h2 class="font-orbitron text-4xl text-center mb-10 text-white">Let's <span class="text-neonBlue italic">Connect.</span></h2>
-            <form id="whatsappForm" class="space-y-8">
-                <input type="text" id="name" placeholder="Full Name" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 text-white outline-none focus:border-neonBlue transition">
-                <input type="text" id="subject" placeholder="Project Title" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 text-white outline-none focus:border-neonBlue transition">
-                <button type="submit" class="w-full glow-button bg-white text-black font-bold py-6 rounded-2xl uppercase tracking-widest text-xs">Launch Connection</button>
+        <div class="glass p-10 md:p-16 rounded-[3.5rem] relative overflow-hidden" data-aos="fade-up">
+            <h2 class="font-orbitron text-3xl md:text-5xl font-bold text-center mb-10 tracking-tighter">Initiate <span class="text-neonBlue italic">Project.</span></h2>
+            <form id="whatsappForm" class="space-y-6">
+                <input type="text" id="name" placeholder="Your Name" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 text-white outline-none focus:border-neonBlue transition">
+                <input type="text" id="subject" placeholder="What are you building?" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 text-white outline-none focus:border-neonBlue transition">
+                <button type="submit" class="w-full glow-button bg-white text-black font-bold py-6 rounded-2xl uppercase tracking-[0.3em] text-xs">Launch Connection</button>
             </form>
         </div>
     </section>
+
+    <footer class="py-16 text-center border-t border-white/5">
+        <div class="font-orbitron text-2xl font-bold mb-4 tracking-widest text-gradient">ARISE TECH</div>
+        <p class="text-gray-600 text-[10px] tracking-[0.5em] uppercase font-bold">© 2026 Arise Tech. All rights reserved.</p>
+    </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
