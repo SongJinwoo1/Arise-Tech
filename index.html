@@ -53,17 +53,17 @@
         }
 
         .glow-button {
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
         }
 
         .glow-button:hover {
-            box-shadow: 0 0 30px rgba(146, 69, 255, 0.6);
-            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(146, 69, 255, 0.5);
+            transform: translateY(-3px);
         }
 
         /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: #9245ff; border-radius: 10px; }
 
@@ -75,195 +75,200 @@
                 radial-gradient(circle at 80% 70%, rgba(146, 69, 255, 0.05) 0%, transparent 50%);
             z-index: -1;
         }
+
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: transform 0.5s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <nav class="fixed w-full z-50 glass border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center">
+    <nav class="fixed w-full z-[100] glass border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center transition-all duration-300" id="main-nav">
         <div class="font-orbitron text-xl md:text-2xl font-bold tracking-tighter text-white">
             ARISE <span class="text-neonBlue">TECH</span>
         </div>
         
-        <div class="hidden md:flex gap-8 font-medium text-sm uppercase tracking-widest text-gray-400">
+        <div class="hidden md:flex gap-10 font-medium text-[10px] uppercase tracking-[0.3em] text-gray-400">
             <a href="#home" class="hover:text-neonBlue transition">Home</a>
             <a href="#services" class="hover:text-neonBlue transition">Services</a>
             <a href="#portfolio" class="hover:text-neonBlue transition">Portfolio</a>
-            <a href="#contact" class="hover:text-neonBlue transition text-white border-b border-electricPurple">Contact</a>
+            <a href="#contact" class="text-white border-b border-neonBlue pb-1">Contact</a>
         </div>
 
-        <div class="md:hidden">
-            <i data-lucide="menu" class="w-6 h-6"></i>
-        </div>
+        <button id="menu-btn" class="md:hidden text-white p-2">
+            <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+        </button>
     </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[90] bg-cyberBlack flex flex-col items-center justify-center gap-10 md:hidden">
+        <a href="#home" class="menu-link font-orbitron text-2xl hover:text-neonBlue transition">HOME</a>
+        <a href="#services" class="menu-link font-orbitron text-2xl hover:text-neonBlue transition">SERVICES</a>
+        <a href="#portfolio" class="menu-link font-orbitron text-2xl hover:text-neonBlue transition">PORTFOLIO</a>
+        <a href="#contact" class="menu-link font-orbitron text-2xl text-neonBlue">CONTACT</a>
+    </div>
 
     <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center px-6">
         <div class="hero-mesh"></div>
         
-        <div data-aos="zoom-in" data-aos-duration="1000">
-            <div class="w-20 h-20 md:w-28 md:h-28 bg-gradient-to-br from-neonBlue to-electricPurple rounded-2xl rotate-45 mx-auto mb-10 flex items-center justify-center shadow-2xl shadow-neonBlue/20">
+        <div data-aos="zoom-in" data-aos-duration="1200">
+            <div class="w-20 h-20 md:w-28 md:h-28 bg-gradient-to-br from-neonBlue to-electricPurple rounded-3xl rotate-45 mx-auto mb-12 flex items-center justify-center shadow-2xl shadow-neonBlue/30 border border-white/10">
                 <i data-lucide="layers" class="w-10 h-10 md:w-14 md:h-14 text-white -rotate-45"></i>
             </div>
         </div>
 
-        <h1 class="font-orbitron text-5xl md:text-8xl font-bold mb-4 tracking-tighter" data-aos="fade-up">
+        <h1 class="font-orbitron text-5xl md:text-9xl font-bold mb-6 tracking-tighter" data-aos="fade-up">
             <span class="text-gradient">ARISE TECH</span>
         </h1>
         
-        <p class="text-lg md:text-2xl font-light text-gray-400 mb-10 tracking-widest" data-aos="fade-up" data-aos-delay="200">
+        <p class="text-sm md:text-2xl font-light text-gray-400 mb-12 tracking-[0.4em] uppercase" data-aos="fade-up" data-aos-delay="200">
             LEVEL UP YOUR REALITY
         </p>
 
         <div data-aos="fade-up" data-aos-delay="400">
-            <a href="#contact" class="glow-button inline-block bg-gradient-to-r from-neonBlue to-electricPurple text-white px-10 py-4 rounded-full font-bold text-lg uppercase tracking-widest">
+            <a href="#contact" class="glow-button inline-block bg-gradient-to-r from-neonBlue to-electricPurple text-white px-12 py-5 rounded-2xl font-bold text-lg uppercase tracking-widest shadow-xl">
                 Start Your Project
             </a>
         </div>
     </section>
 
-    <section id="services" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-        <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="font-orbitron text-3xl md:text-5xl font-bold mb-4">Core Solutions</h2>
-            <p class="text-gray-500 italic">Pushing the boundaries of the digital world</p>
+    <section id="services" class="py-32 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="text-center mb-20" data-aos="fade-up">
+            <h2 class="font-orbitron text-3xl md:text-6xl font-bold mb-4">Core Solutions</h2>
+            <div class="w-20 h-1 bg-neonBlue mx-auto rounded-full"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="glass p-10 rounded-3xl hover:border-neonBlue/50 transition duration-500 group" data-aos="fade-up" data-aos-delay="100">
-                <div class="w-14 h-14 bg-neonBlue/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="glass p-12 rounded-[2.5rem] hover:border-neonBlue/50 transition duration-500 group" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-16 h-16 bg-neonBlue/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-neonBlue/20 transition">
                     <i data-lucide="code-2" class="text-neonBlue w-8 h-8"></i>
                 </div>
                 <h3 class="font-orbitron text-xl font-bold mb-4">High-End Web Development</h3>
-                <p class="text-gray-400 leading-relaxed">Next-gen performance. We build blazing fast, SEO-optimized web experiences that convert visitors into loyal clients.</p>
+                <p class="text-gray-400 leading-relaxed text-sm">Next-gen performance. We build blazing fast, SEO-optimized web experiences that convert visitors into loyal clients.</p>
             </div>
 
-            <div class="glass p-10 rounded-3xl hover:border-electricPurple/50 transition duration-500 group" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-14 h-14 bg-electricPurple/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+            <div class="glass p-12 rounded-[2.5rem] hover:border-electricPurple/50 transition duration-500 group" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-16 h-16 bg-electricPurple/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-electricPurple/20 transition">
                     <i data-lucide="message-square" class="text-electricPurple w-8 h-8"></i>
                 </div>
                 <h3 class="font-orbitron text-xl font-bold mb-4">AI-Powered Chatbots</h3>
-                <p class="text-gray-400 leading-relaxed">Automate your sales 24/7. Intelligent WhatsApp and Messenger bots that speak your brand's language.</p>
+                <p class="text-gray-400 leading-relaxed text-sm">Automate your sales 24/7. Intelligent WhatsApp and Messenger bots that speak your brand's language.</p>
             </div>
 
-            <div class="glass p-10 rounded-3xl hover:border-neonBlue/50 transition duration-500 group" data-aos="fade-up" data-aos-delay="300">
-                <div class="w-14 h-14 bg-neonBlue/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+            <div class="glass p-12 rounded-[2.5rem] hover:border-neonBlue/50 transition duration-500 group" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-16 h-16 bg-neonBlue/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-neonBlue/20 transition">
                     <i data-lucide="zap" class="text-neonBlue w-8 h-8"></i>
                 </div>
                 <h3 class="font-orbitron text-xl font-bold mb-4">Business Automation</h3>
-                <p class="text-gray-400 leading-relaxed">Stop wasting time on repetitive tasks. We deploy smart AI workflows to streamline your entire business operation.</p>
+                <p class="text-gray-400 leading-relaxed text-sm">Stop wasting time on repetitive tasks. We deploy smart AI workflows to streamline your entire business operation.</p>
             </div>
         </div>
     </section>
 
-    <section id="portfolio" class="py-24 bg-[#080808]">
+    <section id="portfolio" class="py-32 bg-[#020202]">
         <div class="max-w-7xl mx-auto px-6 md:px-12">
-            <h2 class="font-orbitron text-3xl md:text-5xl font-bold mb-12" data-aos="fade-right">Selected Projects</h2>
+            <h2 class="font-orbitron text-3xl md:text-5xl font-bold mb-16" data-aos="fade-right">_PROJECTS</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group relative overflow-hidden rounded-3xl glass" data-aos="fade-up">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="group relative overflow-hidden rounded-[2.5rem] glass" data-aos="fade-up">
                     <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=800" 
-                         class="w-full h-72 object-cover opacity-60 group-hover:scale-110 group-hover:opacity-100 transition duration-700" alt="Perfume Store">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                    <div class="absolute bottom-6 left-6">
-                        <span class="text-[10px] uppercase tracking-widest text-neonBlue font-bold bg-neonBlue/10 px-3 py-1 rounded-full mb-2 inline-block">E-Commerce</span>
-                        <h4 class="text-2xl font-bold">Arij Al-Fakhama</h4>
-                        <p class="text-sm text-gray-400">Luxury Perfume Boutique</p>
+                         class="w-full h-[450px] object-cover opacity-40 group-hover:scale-110 group-hover:opacity-100 transition duration-700" alt="Perfume Store">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-transparent to-transparent"></div>
+                    <div class="absolute bottom-8 left-8 right-8">
+                        <span class="text-[10px] uppercase tracking-widest text-neonBlue font-bold bg-neonBlue/10 px-4 py-1 rounded-full mb-3 inline-block">E-Commerce</span>
+                        <h4 class="text-3xl font-bold mb-4 font-orbitron">Arij Al-Fakhama</h4>
+                        <a href="arij.html" class="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-bold text-sm hover:bg-neonBlue hover:text-white transition">
+                            View Demo <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="flex items-center justify-center border-2 border-dashed border-white/10 rounded-3xl h-72 text-gray-600">
-                    Next Masterpiece Coming Soon...
+
+                <div class="flex flex-col items-center justify-center border-2 border-dashed border-white/5 rounded-[2.5rem] h-[450px] text-gray-700 group hover:border-white/20 transition">
+                    <i data-lucide="plus-circle" class="w-12 h-12 mb-4 group-hover:text-neonBlue transition"></i>
+                    <p class="font-orbitron tracking-widest uppercase text-xs">Next Masterpiece</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 border-y border-white/5">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-            <div data-aos="zoom-in">
-                <i data-lucide="truck" class="mx-auto mb-4 text-neonBlue w-10 h-10"></i>
-                <h5 class="font-bold text-lg mb-2">Fast Delivery</h5>
-                <p class="text-gray-500 text-sm">Deployment in days, not months.</p>
-            </div>
-            <div data-aos="zoom-in" data-aos-delay="100">
-                <i data-lucide="shield-check" class="mx-auto mb-4 text-electricPurple w-10 h-10"></i>
-                <h5 class="font-bold text-lg mb-2">Scalable Code</h5>
-                <p class="text-gray-500 text-sm">Future-proof architecture.</p>
-            </div>
-            <div data-aos="zoom-in" data-aos-delay="200">
-                <i data-lucide="bot" class="mx-auto mb-4 text-neonBlue w-10 h-10"></i>
-                <h5 class="font-bold text-lg mb-2">24/7 AI Support</h5>
-                <p class="text-gray-500 text-sm">Intelligent monitoring around the clock.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-24 px-6 md:px-12 max-w-4xl mx-auto">
-        <div class="glass p-8 md:p-12 rounded-[3rem] relative overflow-hidden" data-aos="fade-up">
+    <section id="contact" class="py-32 px-6 md:px-12 max-w-4xl mx-auto">
+        <div class="glass p-10 md:p-16 rounded-[3.5rem] relative overflow-hidden" data-aos="fade-up">
             <div class="relative z-10">
-                <h2 class="font-orbitron text-3xl md:text-5xl font-bold mb-8 text-center">Let's Build the Future</h2>
+                <h2 class="font-orbitron text-4xl md:text-6xl font-bold mb-10 text-center">Let's <span class="text-neonBlue italic">Level Up.</span></h2>
                 
-                <form id="whatsappForm" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <input type="text" id="name" placeholder="Your Name" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:border-neonBlue outline-none transition">
-                        <input type="text" id="subject" placeholder="Project Type (e.g. Website)" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:border-neonBlue outline-none transition">
+                <form id="whatsappForm" class="space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <input type="text" id="name" placeholder="Full Name" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 focus:border-neonBlue outline-none transition text-sm">
+                        <input type="text" id="subject" placeholder="Project Type" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 focus:border-neonBlue outline-none transition text-sm">
                     </div>
-                    <textarea id="message" placeholder="Tell us about your reality..." rows="4" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:border-neonBlue outline-none transition"></textarea>
+                    <textarea id="message" placeholder="Describe your vision..." rows="4" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 focus:border-neonBlue outline-none transition text-sm"></textarea>
                     
-                    <button type="submit" class="w-full glow-button bg-white text-black font-bold py-5 rounded-2xl uppercase tracking-[0.3em] hover:bg-neonBlue hover:text-white transition">
-                        Send via WhatsApp
+                    <button type="submit" class="w-full glow-button bg-white text-black font-bold py-6 rounded-2xl uppercase tracking-[0.4em] hover:bg-neonBlue hover:text-white transition text-xs">
+                        Initiate Connection (WhatsApp)
                     </button>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center border-t border-white/5">
-        <div class="font-orbitron text-lg font-bold mb-6 tracking-widest">ARISE TECH</div>
-        <div class="flex justify-center gap-6 mb-8 text-gray-500">
-            <a href="#" class="hover:text-neonBlue transition"><i data-lucide="instagram"></i></a>
-            <a href="#" class="hover:text-neonBlue transition"><i data-lucide="twitter"></i></a>
-            <a href="#" class="hover:text-neonBlue transition"><i data-lucide="linkedin"></i></a>
+    <footer class="py-16 text-center border-t border-white/5">
+        <div class="font-orbitron text-2xl font-bold mb-8 tracking-widest gold-gradient">ARISE TECH</div>
+        <div class="flex justify-center gap-10 mb-10 text-gray-500">
+            <a href="#" class="hover:text-neonBlue transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+            <a href="#" class="hover:text-neonBlue transition"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+            <a href="#" class="hover:text-neonBlue transition"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
         </div>
-        <p class="text-gray-600 text-xs tracking-widest">© 2026 Arise Tech. All rights reserved.</p>
+        <p class="text-gray-600 text-[10px] tracking-[0.5em] uppercase font-bold">© 2026 Arise Tech. Handcrafted with Intelligence.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-            easing: 'ease-in-out'
-        });
-
-        // Initialize Lucide Icons
+        AOS.init({ duration: 1000, once: true });
         lucide.createIcons();
 
-        // WhatsApp Redirection
-        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            const phone = "96597805334"; // Kuwait Number
-            const text = `Hello Arise Tech! My name is ${name}. I'm interested in: ${subject}. Message: ${message}`;
-            
-            const wpUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-            window.open(wpUrl, '_blank');
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const isActive = mobileMenu.classList.contains('active');
+            menuIcon.setAttribute('data-lucide', isActive ? 'x' : 'menu');
+            lucide.createIcons(); // Redraw icons
         });
 
-        // Navbar scroll effect
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+
+        // WhatsApp Logic
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const text = `Arise Tech Connection Request:\nName: ${document.getElementById('name').value}\nProject: ${document.getElementById('subject').value}\nVision: ${document.getElementById('message').value}`;
+            window.open(`https://wa.me/96597805334?text=${encodeURIComponent(text)}`, '_blank');
+        });
+
+        // Navbar Scroll Effect
         window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('py-2');
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('py-2', 'bg-black/90');
                 nav.classList.remove('py-4');
             } else {
                 nav.classList.add('py-4');
-                nav.classList.remove('py-2');
+                nav.classList.remove('py-2', 'bg-black/90');
             }
         });
     </script>
 </body>
 </html>
-
