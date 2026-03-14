@@ -1,197 +1,269 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ARISE SYSTEM | THE MONARCH HUD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arise Tech | Level Up Your Reality</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyberBlack: '#050505',
+                        neonBlue: '#00d4ff',
+                        electricPurple: '#9245ff',
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        body: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root { --p: #a333ff; --bg: #050505; --cyan: #00f2ff; --gray: #121212; --text: #e0e0e0; }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
-        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; }
-        
-        .main-wrapper { width: 100%; max-width: 500px; padding: 15px; animation: fadeIn 1s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        .card { background: rgba(15, 15, 15, 0.98); border: 2px solid var(--p); border-radius: 24px; padding: 25px; box-shadow: 0 0 50px rgba(163, 51, 255, 0.3); text-align: center; position: relative; overflow: hidden; }
-        
-        /* شارات الرتبة */
-        .rank-glow { position: absolute; top: -50px; left: -50px; width: 100px; height: 100px; background: var(--p); filter: blur(60px); opacity: 0.5; }
-        
-        h1 { color: var(--p); text-shadow: 0 0 15px var(--p); font-size: 1.4rem; margin-bottom: 20px; letter-spacing: 2px; }
-        
-        /* واجهة HUD */
-        .user-header { display: flex; align-items: center; gap: 15px; background: var(--gray); padding: 15px; border-radius: 18px; margin-bottom: 20px; border-right: 5px solid var(--cyan); }
-        .avatar { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--p); box-shadow: 0 0 10px var(--p); }
-        .u-info { text-align: right; flex-grow: 1; }
-        .u-name { font-weight: 900; font-size: 1.1rem; color: #fff; }
-        .rank-tag { color: var(--cyan); font-weight: 900; font-size: 0.85rem; text-transform: uppercase; }
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Tajawal', sans-serif;
+            overflow-x: hidden;
+        }
 
-        /* شريط الـ XP */
-        .xp-box { margin: 20px 0; text-align: right; }
-        .xp-label { font-size: 0.75rem; color: #888; margin-bottom: 5px; display: block; }
-        .bar-bg { background: #222; height: 12px; border-radius: 6px; overflow: hidden; border: 1px solid #333; }
-        #xp-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--p), var(--cyan)); transition: 1.5s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-        /* المهام */
-        .quest-list { max-height: 400px; overflow-y: auto; padding-right: 5px; }
-        .quest-item { background: #1a1a1a; padding: 18px; border-radius: 16px; margin-bottom: 15px; border-right: 4px solid var(--p); text-align: right; transition: 0.3s; }
-        .quest-item:hover { transform: translateX(-5px); background: #222; }
-        .quest-label { color: var(--p); font-weight: bold; font-size: 0.95rem; margin-bottom: 10px; display: block; }
-        
-        input { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #00f2ff; border-radius: 10px; margin-bottom: 12px; font-size: 0.9rem; }
-        input:focus { border-color: var(--cyan); box-shadow: 0 0 10px rgba(0, 242, 255, 0.2); }
-        
-        .btn-strike { width: 100%; background: var(--p); color: white; border: none; padding: 14px; border-radius: 12px; font-weight: 900; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-        .btn-strike:active { transform: scale(0.98); opacity: 0.8; }
-        .btn-strike:disabled { background: #333; cursor: not-allowed; border: 1px solid #444; }
+        .text-gradient {
+            background: linear-gradient(90deg, #00d4ff, #9245ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-        .auth-btn { width: 100%; border: 2px solid var(--cyan); background: transparent; color: var(--cyan); padding: 16px; border-radius: 15px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 1.1rem; }
-        
-        .hidden { display: none !important; }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: var(--p); border-radius: 10px; }
+        .glow-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .glow-button:hover {
+            box-shadow: 0 0 30px rgba(146, 69, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #9245ff; border-radius: 10px; }
+
+        .hero-mesh {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(146, 69, 255, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
 
-<div class="main-wrapper">
-    <div id="auth-screen" class="card">
-        <div class="rank-glow"></div>
-        <h1>ARISE TECH SYSTEM</h1>
-        <button class="auth-btn" id="loginBtn">
-            <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.35 11.1h-9.17v2.73h6.51c-.33 1.56-1.56 2.73-3.21 2.73c-2.02 0-3.65-1.63-3.65-3.65s1.63-3.65 3.65-3.65c.88 0 1.68.32 2.3.84l2.13-2.13C18.67 5.43 16.73 4.53 14.48 4.53c-4.14 0-7.5 3.36-7.5 7.5s3.36 7.5 7.5 7.5c4.14 0 7.5-3.36 7.5-7.5c0-.45-.03-.9-.08-1.33z"/></svg>
-            اتصال الهوية السيادية
-        </button>
-    </div>
+    <nav class="fixed w-full z-50 glass border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center">
+        <div class="font-orbitron text-xl md:text-2xl font-bold tracking-tighter text-white">
+            ARISE <span class="text-neonBlue">TECH</span>
+        </div>
+        
+        <div class="hidden md:flex gap-8 font-medium text-sm uppercase tracking-widest text-gray-400">
+            <a href="#home" class="hover:text-neonBlue transition">Home</a>
+            <a href="#services" class="hover:text-neonBlue transition">Services</a>
+            <a href="#portfolio" class="hover:text-neonBlue transition">Portfolio</a>
+            <a href="#contact" class="hover:text-neonBlue transition text-white border-b border-electricPurple">Contact</a>
+        </div>
 
-    <div id="hud-screen" class="card hidden">
-        <div class="user-header">
-            <img id="u-img" class="avatar" src="" alt="">
-            <div class="u-info">
-                <div id="u-name" class="u-name">جاري الاستدعاء...</div>
-                <div class="rank-tag">RANK: <span id="u-rank">E</span></div>
+        <div class="md:hidden">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </div>
+    </nav>
+
+    <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center px-6">
+        <div class="hero-mesh"></div>
+        
+        <div data-aos="zoom-in" data-aos-duration="1000">
+            <div class="w-20 h-20 md:w-28 md:h-28 bg-gradient-to-br from-neonBlue to-electricPurple rounded-2xl rotate-45 mx-auto mb-10 flex items-center justify-center shadow-2xl shadow-neonBlue/20">
+                <i data-lucide="layers" class="w-10 h-10 md:w-14 md:h-14 text-white -rotate-45"></i>
             </div>
         </div>
 
-        <div class="xp-box">
-            <span class="xp-label">مستوى الخبرة الحالية (EXP)</span>
-            <div class="bar-bg"><div id="xp-fill"></div></div>
+        <h1 class="font-orbitron text-5xl md:text-8xl font-bold mb-4 tracking-tighter" data-aos="fade-up">
+            <span class="text-gradient">ARISE TECH</span>
+        </h1>
+        
+        <p class="text-lg md:text-2xl font-light text-gray-400 mb-10 tracking-widest" data-aos="fade-up" data-aos-delay="200">
+            LEVEL UP YOUR REALITY
+        </p>
+
+        <div data-aos="fade-up" data-aos-delay="400">
+            <a href="#contact" class="glow-button inline-block bg-gradient-to-r from-neonBlue to-electricPurple text-white px-10 py-4 rounded-full font-bold text-lg uppercase tracking-widest">
+                Start Your Project
+            </a>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="font-orbitron text-3xl md:text-5xl font-bold mb-4">Core Solutions</h2>
+            <p class="text-gray-500 italic">Pushing the boundaries of the digital world</p>
         </div>
 
-        <div class="quest-list" id="quests-container">
-            <div class="quest-item">
-                <label class="quest-label">📖 ورد القرآن الكريم (إجباري)</label>
-                <input type="text" id="ev-quran" placeholder="أدخل السورة والآيات المنجزة...">
-                <button class="btn-strike" onclick="strike('quran')">توثيق الإنجاز ⚔️</button>
-            </div>
-            <div class="quest-item">
-                <label class="quest-label">🇬🇧 تطوير الإنجليزية (إجباري)</label>
-                <input type="text" id="ev-english" placeholder="اكتب 5 كلمات أو قاعدة تعلمتها...">
-                <button class="btn-strike" onclick="strike('english')">توثيق الإنجاز ⚔️</button>
-            </div>
-            </div>
-
-        <button onclick="auth.signOut().then(()=>location.reload())" style="background:none; border:none; color:#444; cursor:pointer; font-size:0.7rem; margin-top:15px; text-decoration:underline;">قطع الاتصال بالنظام</button>
-    </div>
-</div>
-
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyAz8CIPuN8u_8dTWpF1A6Ab65pz045GSf8",
-        authDomain: "arise-tech-system.firebaseapp.com",
-        projectId: "arise-tech-system",
-        appId: "1:668442578821:web:c130beaef95961b4ef7eec"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    // بروتوكول الدخول (Redirect) لحل مشكلة الشاشة البيضاء
-    document.getElementById('loginBtn').onclick = () => signInWithRedirect(auth, new GoogleAuthProvider());
-
-    // مراقب الحالة ونظام تصفير السبت
-    onAuthStateChanged(auth, async (u) => {
-        if (u) {
-            document.getElementById('auth-screen').classList.add('hidden');
-            document.getElementById('hud-screen').classList.remove('hidden');
-            
-            const r = doc(db, "monarchs", u.uid);
-            let s = await getDoc(r);
-            
-            // تحقق من تصفير السبت (كل سبت 23:59)
-            const now = new Date();
-            if (now.getDay() === 6 && now.getHours() === 23 && now.getMinutes() >= 58) {
-                await updateDoc(r, { xp: 0, rank: "E" });
-            }
-
-            if (!s.exists()) {
-                await setDoc(r, { name: u.displayName, rank: "E", xp: 0, lastLogin: now });
-                s = await getDoc(r);
-            }
-
-            const d = s.data();
-            updateUI(d, u.photoURL);
-            generateHybridQuests();
-        }
-    });
-
-    function updateUI(d, photo) {
-        document.getElementById('u-name').innerText = d.name;
-        document.getElementById('u-img').src = photo;
-        
-        // خوارزمية الرتب التلقائية
-        let rank = "E";
-        if (d.xp >= 100) rank = "D";
-        if (d.xp >= 300) rank = "C";
-        if (d.xp >= 600) rank = "B";
-        if (d.xp >= 900) rank = "A";
-        if (d.xp >= 1000) rank = "S";
-        
-        document.getElementById('u-rank').innerText = rank;
-        document.getElementById('xp-fill').style.width = Math.min(d.xp, 100) + "%";
-    }
-
-    // توليد المهام الهجينة (شريعة، عربي، علوم، تقنية)
-    function generateHybridQuests() {
-        const tasks = [
-            { id: 'sharia', label: '🛡️ شريعة: حفظ حديث أو صفحة فقه' },
-            { id: 'arabic', label: '✍️ عربي: درس نحو أو بلاغة' },
-            { id: 'science', label: '🧪 علوم: مراجعة فصل (طب)' },
-            { id: 'tech', label: '💻 تقنية: بناء وظيفة برمجية' }
-        ];
-        
-        let html = '';
-        tasks.forEach(t => {
-            html += `
-                <div class="quest-item">
-                    <label class="quest-label">${t.label}</label>
-                    <input type="text" id="ev-${t.id}" placeholder="اكتب ما أنجزته بالتفصيل...">
-                    <button class="btn-strike" onclick="strike('${t.id}')">تأكيد الاستحقاق ⚔️</button>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass p-10 rounded-3xl hover:border-neonBlue/50 transition duration-500 group" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-14 h-14 bg-neonBlue/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                    <i data-lucide="code-2" class="text-neonBlue w-8 h-8"></i>
                 </div>
-            `;
-        });
-        document.getElementById('quests-container').innerHTML += html;
-    }
+                <h3 class="font-orbitron text-xl font-bold mb-4">High-End Web Development</h3>
+                <p class="text-gray-400 leading-relaxed">Next-gen performance. We build blazing fast, SEO-optimized web experiences that convert visitors into loyal clients.</p>
+            </div>
 
-    // بروتوكول الإثبات (Evidence Protocol)
-    window.strike = async (id) => {
-        const ev = document.getElementById(`ev-${id}`).value;
-        if (ev.length < 10) return alert("🛡️ مرفوض! بروتوكول الإثبات يتطلب 10 أحرف على الأقل.");
-        
-        const r = doc(db, "monarchs", auth.currentUser.uid);
-        const s = await getDoc(r);
-        const nxp = (s.data().xp || 0) + 15;
-        
-        await updateDoc(r, { xp: nxp });
-        document.getElementById(`ev-${id}`).disabled = true;
-        document.getElementById(`ev-${id}`).placeholder = "✅ تـم التوثيق سحابياً";
-        location.reload(); // تحديث الرتبة والـ XP
-    };
-</script>
+            <div class="glass p-10 rounded-3xl hover:border-electricPurple/50 transition duration-500 group" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-14 h-14 bg-electricPurple/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                    <i data-lucide="message-square" class="text-electricPurple w-8 h-8"></i>
+                </div>
+                <h3 class="font-orbitron text-xl font-bold mb-4">AI-Powered Chatbots</h3>
+                <p class="text-gray-400 leading-relaxed">Automate your sales 24/7. Intelligent WhatsApp and Messenger bots that speak your brand's language.</p>
+            </div>
+
+            <div class="glass p-10 rounded-3xl hover:border-neonBlue/50 transition duration-500 group" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-14 h-14 bg-neonBlue/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                    <i data-lucide="zap" class="text-neonBlue w-8 h-8"></i>
+                </div>
+                <h3 class="font-orbitron text-xl font-bold mb-4">Business Automation</h3>
+                <p class="text-gray-400 leading-relaxed">Stop wasting time on repetitive tasks. We deploy smart AI workflows to streamline your entire business operation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-24 bg-[#080808]">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <h2 class="font-orbitron text-3xl md:text-5xl font-bold mb-12" data-aos="fade-right">Selected Projects</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-3xl glass" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=800" 
+                         class="w-full h-72 object-cover opacity-60 group-hover:scale-110 group-hover:opacity-100 transition duration-700" alt="Perfume Store">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <span class="text-[10px] uppercase tracking-widest text-neonBlue font-bold bg-neonBlue/10 px-3 py-1 rounded-full mb-2 inline-block">E-Commerce</span>
+                        <h4 class="text-2xl font-bold">Arij Al-Fakhama</h4>
+                        <p class="text-sm text-gray-400">Luxury Perfume Boutique</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center border-2 border-dashed border-white/10 rounded-3xl h-72 text-gray-600">
+                    Next Masterpiece Coming Soon...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            <div data-aos="zoom-in">
+                <i data-lucide="truck" class="mx-auto mb-4 text-neonBlue w-10 h-10"></i>
+                <h5 class="font-bold text-lg mb-2">Fast Delivery</h5>
+                <p class="text-gray-500 text-sm">Deployment in days, not months.</p>
+            </div>
+            <div data-aos="zoom-in" data-aos-delay="100">
+                <i data-lucide="shield-check" class="mx-auto mb-4 text-electricPurple w-10 h-10"></i>
+                <h5 class="font-bold text-lg mb-2">Scalable Code</h5>
+                <p class="text-gray-500 text-sm">Future-proof architecture.</p>
+            </div>
+            <div data-aos="zoom-in" data-aos-delay="200">
+                <i data-lucide="bot" class="mx-auto mb-4 text-neonBlue w-10 h-10"></i>
+                <h5 class="font-bold text-lg mb-2">24/7 AI Support</h5>
+                <p class="text-gray-500 text-sm">Intelligent monitoring around the clock.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-6 md:px-12 max-w-4xl mx-auto">
+        <div class="glass p-8 md:p-12 rounded-[3rem] relative overflow-hidden" data-aos="fade-up">
+            <div class="relative z-10">
+                <h2 class="font-orbitron text-3xl md:text-5xl font-bold mb-8 text-center">Let's Build the Future</h2>
+                
+                <form id="whatsappForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" id="name" placeholder="Your Name" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:border-neonBlue outline-none transition">
+                        <input type="text" id="subject" placeholder="Project Type (e.g. Website)" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:border-neonBlue outline-none transition">
+                    </div>
+                    <textarea id="message" placeholder="Tell us about your reality..." rows="4" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:border-neonBlue outline-none transition"></textarea>
+                    
+                    <button type="submit" class="w-full glow-button bg-white text-black font-bold py-5 rounded-2xl uppercase tracking-[0.3em] hover:bg-neonBlue hover:text-white transition">
+                        Send via WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center border-t border-white/5">
+        <div class="font-orbitron text-lg font-bold mb-6 tracking-widest">ARISE TECH</div>
+        <div class="flex justify-center gap-6 mb-8 text-gray-500">
+            <a href="#" class="hover:text-neonBlue transition"><i data-lucide="instagram"></i></a>
+            <a href="#" class="hover:text-neonBlue transition"><i data-lucide="twitter"></i></a>
+            <a href="#" class="hover:text-neonBlue transition"><i data-lucide="linkedin"></i></a>
+        </div>
+        <p class="text-gray-600 text-xs tracking-widest">© 2026 Arise Tech. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // WhatsApp Redirection
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            const phone = "96597805334"; // Kuwait Number
+            const text = `Hello Arise Tech! My name is ${name}. I'm interested in: ${subject}. Message: ${message}`;
+            
+            const wpUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+            window.open(wpUrl, '_blank');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2');
+            }
+        });
+    </script>
 </body>
 </html>
+
