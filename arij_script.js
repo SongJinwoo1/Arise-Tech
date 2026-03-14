@@ -1,34 +1,35 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // تشغيل الأنيميشن
-    AOS.init({ duration: 1500, once: true });
-    lucide.createIcons();
+/* Custom Arij Luxury Styles */
+body { background-color: #030303; }
 
-    // --- منطق قائمة الجوال ---
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu'); // نحتاج لإضافته في الـ HTML كقسم مخفي
-    const menuIcon = document.getElementById('menu-icon');
+.glass {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
 
-    menuBtn?.addEventListener('click', () => {
-        // يمكننا برمجة قائمة موبايل خاصة بأريج هنا
-        alert('يمكننا إضافة قائمة موبايل فخمة هنا عند الطلب.');
-    });
+.text-gradient-gold {
+    background: linear-gradient(135deg, #d9b373, #b1965f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-    // --- نموذج الواتساب الخاص بـ أريج ---
-    const arijForm = document.getElementById('whatsappFormArij');
-    arijForm?.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const name = document.getElementById('arij_name').value;
-        const subject = document.getElementById('arij_subject').value;
-        
-        // رسالة احترافية جداً
-        const text = `طلب عطر ملكي:\nالاسم: ${name}\nالعطر المطلوب: ${subject}\nأتمنى التواصل لتأكيد الطلب وشكراً لـ أريج.`;
-        
-        // رقم الواتساب الخاص بالبيع (يمكن تغييره)
-        window.open(`https://wa.me/96597805334?text=${encodeURIComponent(text)}`, '_blank');
-    });
+.glow-button {
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 0 20px rgba(217, 179, 115, 0.1);
+}
 
-    // --- ربط المحرك (Service Worker) للتطبيق ---
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').then(reg => console.log('Arij Engine Active'));
-    }
-});
+.glow-button:hover {
+    box-shadow: 0 0 50px rgba(217, 179, 115, 0.3);
+    transform: translateY(-5px) scale(1.02);
+}
+
+/* سكرول ذهبي مخفي جزئياً للفخامة */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #030303; }
+::-webkit-scrollbar-thumb { background: #d9b373; border-radius: 20px; }
+
+#mobile-menu-arij.active {
+    opacity: 1;
+    pointer-events: auto;
+}
