@@ -1,0 +1,30 @@
+/* Arij Al-Fakhama Luxury Styles */
+body {
+    background-color: #030303;
+    color: #ffffff;
+    font-family: 'Tajawal', sans-serif;
+    overflow-x: hidden;
+}
+
+/* سكرول ناعم جداً */
+html {
+    scroll-behavior: smooth;
+    scrollbar-color: #d9b373 #030303; /* ذهبي وأسود */
+}
+
+/* تأثير التوهج للذهب */
+.text-luxuryGold {
+    color: #d9b373;
+    filter: drop-shadow(0 0 8px rgba(217, 179, 115, 0.4));
+}
+
+/* تأثير توهج الزر الملكي */
+.glow-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 15px rgba(217, 179, 115, 0.2);
+}
+
+.glow-button:hover {
+    box-shadow: 0 0 30px rgba(177, 150, 95, 0.5); /* Matte Gold Glow */
+    transform: translateY(-3px);
+}
