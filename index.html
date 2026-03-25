@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arise Tech | Join Our Community</title>
+    <title>Arise Tech | Join Us</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -19,24 +20,33 @@
         
         <div id="form-content">
             <div class="intro-text">سجل بياناتك وسيتم توجيهك للمسؤول للانضمام فوراً.</div>
+            
             <form id="direct-whatsapp-form">
                 <div class="input-group">
                     <input type="text" id="userName" placeholder="الاسم الثلاثي" required>
-                    <input type="number" id="userAge" placeholder="العمر" required>
+
+                    <!-- ✅ تم إصلاح مشكلة iPad -->
+                    <input type="text" id="userAge" placeholder="العمر"
+                           inputmode="numeric" pattern="[0-9]*" required>
                 </div>
+
                 <select id="userLevel" required>
-                    <option value="" disabled selected>ما هو مستواك في البرمجة؟</option>
+                    <option value="">ما هو مستواك في البرمجة؟</option>
                     <option value="مبتدئ جداً">مبتدئ (من الصفر)</option>
                     <option value="أساسيات">مبتدئ (أعرف الأساسيات)</option>
                     <option value="متوسط">متوسط (نفذت مشاريع)</option>
                     <option value="متقدم">متقدم (محترف)</option>
                 </select>
-                <button type="submit" class="submit-btn">إرسال البيانات والانضمام</button>
+
+                <button type="submit" class="submit-btn">
+                    إرسال البيانات والانضمام
+                </button>
             </form>
         </div>
 
         <div class="leadership">
             <span class="section-title">الإدارة المباشرة</span>
+
             <div class="leaders-grid">
                 <a href="https://wa.me/96597805334" class="leader-link leader-jin">
                     <img src="https://raw.githubusercontent.com/SongJinwoo1/Arise-Tech/848a4b7010596b8759551256f4c5e15432e02e6f/IMG_4768.jpeg" class="leader-avatar">
@@ -45,11 +55,12 @@
                         <span class="leader-role">المؤسس</span>
                     </div>
                 </a>
+
                 <a href="https://wa.me/201055719273" class="leader-link leader-ayano">
                     <img src="https://raw.githubusercontent.com/SongJinwoo1/Arise-Tech/848a4b7010596b8759551256f4c5e15432e02e6f/IMG_4767.jpeg" class="leader-avatar">
                     <div class="leader-info">
                         <span class="leader-name">أيانوكوجي</span>
-                        <span class="leader-role">المنسق</span>
+                        <span class="leader-role">المنسق الاستراتيجي</span>
                     </div>
                 </a>
             </div>
